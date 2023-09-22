@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.tsx";
+import App from "./app/app.tsx";
 import "./index.css";
 import { Detail, ErrorPage, Home } from "./pages";
 

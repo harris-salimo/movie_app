@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getMovie } from "../../api/movie";
+import { TMovieDetail } from "../../features/movie/types";
 
 const Detail = () => {
     const { movieId } = useParams();
-    const { data: movie } = useQuery({
+    const { data: movie } = useQuery<TMovieDetail>({
         queryKey: ["movies", "detail", movieId],
         queryFn: async () => {
             const movie = await getMovie(Number(movieId));
@@ -22,13 +23,13 @@ const Detail = () => {
         <div className="flex flex-col gap-y-3">
             <div className="relative p-3 col-start-1 row-start-1 flex justify-center">
                 <h1 className="mt-1 text-lg font-semibold md:text-2xl">
-                    {movie.title}
+                    {movie?.title}
                 </h1>
             </div>
             <div className="flex-none h-80 relative">
                 <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
+                    src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+                    alt={movie?.title}
                     className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
                 />
@@ -51,9 +52,9 @@ const Detail = () => {
                         />
                     </svg>
                     <span>
-                        {movie.vote_average}{" "}
+                        {movie?.vote_average}{" "}
                         <span className="text-slate-400 font-normal">
-                            ({movie.vote_count})
+                            ({movie?.vote_count})
                         </span>
                     </span>
                 </dd>
@@ -82,12 +83,12 @@ const Detail = () => {
                         <path d="M18 11.034C18 14.897 12 19 12 19s-6-4.103-6-7.966C6 7.655 8.819 5 12 5s6 2.655 6 6.034Z" />
                         <path d="M14 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
                     </svg>
-                    {movie.production_countries
-                        .map((prodCountry: Record<string, any>) => prodCountry.name)
+                    {movie?.production_countries
+                        ?.map((prodCountry) => prodCountry.name)
                         .join(", ")}
                 </dd>
             </dl>
-            {movie.status !== "Released" && (
+            {movie?.status !== "Released" && (
                 <div className="mt-4 col-start-1 row-start-3 self-center sm:mt-0 sm:col-start-2 sm:row-start-2 sm:row-span-2 lg:mt-6 lg:col-start-1 lg:row-start-3 lg:row-end-4">
                     <button
                         type="button"
@@ -98,7 +99,7 @@ const Detail = () => {
                 </div>
             )}
             <p className="mt-4 text-sm leading-6 col-start-1 sm:col-span-2 lg:mt-6 lg:row-start-4 lg:col-span-1 dark:text-slate-400">
-                {movie.overview}
+                {movie?.overview}
             </p>
         </div>
     );

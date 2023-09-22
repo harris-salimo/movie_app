@@ -12,7 +12,7 @@ export async function getMovies({
             import.meta.env.VITE_THEMOVIEDB_API_KEY
         }${!page || page < 1 ? "" : "&page=" + page}`
     );
-    return response.data ?? null;
+    return response.data;
 }
 
 export async function getMovie(movieId: number) {
