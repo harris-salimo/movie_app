@@ -1,4 +1,4 @@
-import TabItem from "./tab-item"
-import Tab from "./tab";
+import { TabItem } from "./tab-item/";
+import { TabList as Tab } from "./tab-list/";
 
-export { TabItem, Tab }
+export { TabItem, Tab };
