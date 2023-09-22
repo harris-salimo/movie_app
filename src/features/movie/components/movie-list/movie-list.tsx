@@ -1,13 +1,17 @@
 import { ReactNode } from "react";
-import ReactPaginate from "react-paginate"
+import ReactPaginate from "react-paginate";
 
 interface MovieListProps {
     children: ReactNode;
-    page_count: number;
-    onPageChange?: (selectedItem: {selected: number}) => void;
+    page_count?: number;
+    onPageChange?: (selectedItem: { selected: number }) => void;
 }
- 
-const MovieList = ({ page_count, children, onPageChange }: MovieListProps) => {
+
+const MovieList = ({
+    page_count = 1,
+    children,
+    onPageChange,
+}: MovieListProps) => {
     return (
         <>
             <ul className="divide-y divide-slate-100">{children}</ul>
@@ -60,5 +64,5 @@ const MovieList = ({ page_count, children, onPageChange }: MovieListProps) => {
         </>
     );
 };
- 
+
 export default MovieList;

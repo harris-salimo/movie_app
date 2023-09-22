@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { TMovie } from "../../types";
 
 interface MovieItemProps {
-    data: Record<string, any>;
+    data: TMovie;
 }
 
 const MovieItem = ({ data }: MovieItemProps) => {
@@ -36,29 +37,16 @@ const MovieItem = ({ data }: MovieItemProps) => {
                                 {data.vote_count}
                             </dd>
                         </div>
-                        <div className="ml-2">
-                            <dt className="sr-only">Year</dt>
-                            <dd>
-                                {new Date(
-                                    data.release_date
-                                ).toLocaleDateString()}
-                            </dd>
-                        </div>
-                        <div>
-                            <dt className="sr-only">Genre</dt>
-                            <dd className="flex items-center">
-                                <svg
-                                    width="2"
-                                    height="2"
-                                    fill="currentColor"
-                                    className="mx-2 text-slate-300"
-                                    aria-hidden="true"
-                                >
-                                    <circle cx="1" cy="1" r="1" />
-                                </svg>
-                                {data.genre}
-                            </dd>
-                        </div>
+                        {data.release_date && (
+                            <div className="ml-2">
+                                <dt className="sr-only">Year</dt>
+                                <dd>
+                                    {new Date(
+                                        data.release_date
+                                    ).toLocaleDateString()}
+                                </dd>
+                            </div>
+                        )}
                     </dl>
                 </div>
             </article>

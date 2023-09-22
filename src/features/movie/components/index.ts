@@ -1,4 +1,4 @@
-import MovieItem from "./movie-item"
-import MovieList from "./movie-list"
+import MovieItem from "./movie-item/movie-item";
+import MovieList from "./movie-list/movie-list";
 
-export { MovieItem, MovieList }
+export { MovieItem, MovieList };
